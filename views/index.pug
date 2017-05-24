@@ -1,0 +1,15 @@
+include header.pug
+body
+  h1 PiperChat
+  .container
+    .row
+      .col-xs-12.cajitadechat#chat
+        ul#messages.list-group
+        #form-group.navbar-fixed-bottom
+          form(action="")
+            .input-group
+              input.form-control#m(autocomplete='off' size='20' autocorrect='off')
+              span.input-group-btn 
+                button.btn.btn-primary.btn-block(size='20')="Send"
+        
+        
