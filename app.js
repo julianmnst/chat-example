@@ -15,17 +15,36 @@ app.get('/', function(req, res){
   res.render('index', {title: 'Chat App'})
 })
 
+// SOCKET.IO
+
+var users= []
+
 io.on('connection', function(socket){
   console.log('A user connected')
 
-  socket.broadcast.emit('logeado', 'Un usuario se ha conectado!')
+// Validation
+  socket.on('logged', function(userName, callback){
+    var userNameToLow = userName.toLowerCase()
+    if (users.indexOf(userNameToLow) === -1){
+      callback(true)
+      users.push(userNameToLow)
+      socket.nickname = userName
+      socket.broadcast.emit('chat message', {message: 'se ha conectado', username: socket.nickname})
+    } else {
+      callback(false)
+    }
+  })
 
   socket.on('chat message', function(msg){
-   socket.broadcast.emit('chat message', msg)
+   socket.broadcast.emit('chat message', {message: msg, username: socket.nickname})
     })
 
   socket.on('disconnect', function(){
-    io.emit('logeado', 'Un usuario se ha desconectado!')
+    if (!socket.nickname){
+      return
+    } else {
+      users.splice(users.indexOf(socket.nickname), 1)
+    }
     console.log('A user DISconnected')
   })
 })
