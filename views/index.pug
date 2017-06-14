@@ -1,26 +1,23 @@
 include header.pug
 body
-  h1 PiperChat
+
   .container
-    .row
-      .col-xs-12#name
-        #form-group
-          form#name-form
-            .input-group
-              input.form-control#name-input(autocomplete='off' size='20' autocorrect='off')
-              span.input-group-btn
-                button.btn.btn-primary(size='20')="Log In"
-        br
-        span.label.label-warning#warn
-    .row
-      .col-xs-12.cajitadechat#chat
-        ul#messages.list-group
-        #form-group.navbar-fixed-bottom
-          form#chat-form(action="")
-            .input-group
-              input.form-control#m(autocomplete='off' size='20' autocorrect='off')
-              span.input-group-btn 
-                button.btn.btn-primary.btn-block(size='20')="Send"
-              
-        
-        
+    #name
+      include components/login.pug
+      
+    
+    #chat.chatbox
+      #messages
+
+    #footer.ui.small.menu
+        form.ui.form#chat-form
+          .fields
+            .item
+              .field
+                input#m(type="text" placeholder="Type your message...")
+            .item
+              .field
+                button.ui.fluid.submit.button(type="submit")="Submit"
+            .item
+              .right.menu
+                .item#notification

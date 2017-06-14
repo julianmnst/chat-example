@@ -43,6 +43,7 @@ io.on('connection', function(socket){
     if (!socket.nickname){
       return
     } else {
+      socket.broadcast.emit('chat message', {message: ' se ha desconectado.', username: socket.nickname})
       users.splice(users.indexOf(socket.nickname), 1)
     }
     console.log('A user DISconnected')
@@ -51,5 +52,5 @@ io.on('connection', function(socket){
 
 // LISTEN TO
 http.listen(5000, function(){
-  console.log('App running on 5000 babe')
+  console.log('App running on 5000')
 })
