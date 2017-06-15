@@ -1,23 +1,21 @@
 include header.pug
 body
-
-  .container
-    #name
-      include components/login.pug
-      
+  #name
+    include components/login.pug
     
-    #chat.chatbox
-      #messages
+  
+  #chat.chatbox
+    #messages
 
-    #footer.ui.small.menu
-        form.ui.form#chat-form
-          .fields
-            .item
-              .field
-                input#m(type="text" placeholder="Type your message...")
-            .item
-              .field
-                button.ui.fluid.submit.button(type="submit")="Submit"
-            .item
-              .right.menu
-                .item#notification
+  #footer.ui.small.menu
+      form.ui.form#chat-form
+        .fields
+          .item
+            .field
+              input#m(type="text" placeholder="Type your message...")
+          .item
+            .field
+              button#chat-btn.ui.fluid.submit.button(type="submit")="Submit"
+          .item
+            .right.menu
+              .item#notification
