@@ -3,19 +3,23 @@ body
   #name
     include components/login.pug
     
-  
-  #chat.chatbox
-    #messages
-
-  #footer.ui.small.menu
-      form.ui.form#chat-form
-        .fields
-          .item
-            .field
-              input#m(type="text" placeholder="Type your message...")
-          .item
-            .field
-              button#chat-btn.ui.fluid.submit.button(type="submit")="Submit"
-          .item
-            .right.menu
-              .item#notification
+  .ui.grid
+    .ui.column.fourteen.wide 
+      #chat.chatbox
+        #messages
+    
+    .ui.column.two.wide
+      h1#userslist
+    
+    #footer.ui.small.menu
+        form.ui.form#chat-form
+          .fields
+            .item
+              .field
+                input#m(autocomplete='off' autocorrect='off' type="text" placeholder="Type your message...")
+            .item
+              .field
+                button#chat-btn.ui.fluid.submit.button(type="submit")="Submit"
+            .item
+              .right.menu
+                .item#notification

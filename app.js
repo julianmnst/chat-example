@@ -28,6 +28,7 @@ io.on('connection', function(socket){
     if (users.indexOf(userNameToLow) === -1){
       callback(true)
       users.push(userNameToLow)
+      io.emit('userlists', {list: users})
       socket.nickname = userName
       socket.broadcast.emit('chat message', {message: 'se ha conectado', username: socket.nickname})
     } else {
@@ -44,7 +45,8 @@ io.on('connection', function(socket){
       return
     } else {
       socket.broadcast.emit('chat message', {message: ' se ha desconectado.', username: socket.nickname})
-      users.splice(users.indexOf(socket.nickname), 1)
+      users.splice(users.indexOf(socket.nickname), 1);
+      io.emit('userlists', {list: users});
     }
     console.log('A user DISconnected')
   })
@@ -52,5 +54,5 @@ io.on('connection', function(socket){
 
 // LISTEN TO
 http.listen(5000, function(){
-  console.log('App running on 5000')
+  console.log('App running on 5000 babe')
 })

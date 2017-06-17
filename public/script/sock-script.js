@@ -12,7 +12,8 @@ $(function () {
       $messages = $('#messages'),
       $chatForm = $('#chat-form'),
       $m = $('#m'),
-      myName = ""
+      myName = "",
+      userList = [];
 
   $('#login-btn').click(function(){
     socket.emit('logged', $nameInput.val(), function(res){
@@ -29,6 +30,7 @@ $(function () {
     })
   })
 
+
   $chatForm.submit(function(e){
     e.preventDefault();
     socket.emit('chat message', $m.val());
@@ -36,7 +38,6 @@ $(function () {
               .html('<div class="header"><strong>' + myName + ' </strong> says:</div><p>' + $m.val() + '</p>'))
     $m.val('');
     $('#chat').scrollTop($('#chat').prop("scrollHeight"));
-    console.log($('#chat').prop("scrollHeight"));
   });
 
 
@@ -44,9 +45,13 @@ $(function () {
     $messages.append($('<div class="ui message">')
               .html('<div class="header"><strong>' + msg.username + ' </strong> says:</div><p>'+ msg.message + '</p>'));
     $('#chat').scrollTop($('#chat').prop("scrollHeight"));
-    console.log($('#chat').prop("scrollHeight"));
   });
 
+  socket.on('userlists', function(data){
+    $('#userslist').html(data.list.map(function(val){
+      return '<p>'+val+'</p>';
+    }));
+  });
 
 function hideWarning(){
   $('#warn').hide()

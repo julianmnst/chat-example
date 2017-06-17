@@ -4,6 +4,18 @@ body {
  overflow: hidden;
 }
 
+#name {
+  margin-top: 57px;
+  margin-bottom: 80px;
+  overflow: hidden;
+  height: 100%;
+}
+
+#login-form {
+  position: relative;
+  top: 50px;
+}
+
 
 #footer {
     position: absolute;
@@ -11,9 +23,14 @@ body {
     width: 100%;
 }
 
-.chatbox {
+.chatbox{
+  overflow: auto;
+  height: 100%;
+}
+
+.ui.grid {
   margin-bottom: 80px;
   overflow: auto;
   width: 100%;
-  height: 78%;
+  height: 84%;
 }
